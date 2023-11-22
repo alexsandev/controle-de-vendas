@@ -1,4 +1,5 @@
 ﻿using SalesWebMvc.Data;
+using SalesWebMvc.Services;
 
 namespace SalesWebMvc
 {
@@ -13,6 +14,7 @@ namespace SalesWebMvc
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddScoped<SeedingService>();
+            builder.Services.AddScoped<SellerService>();
 
             var app = builder.Build();
 

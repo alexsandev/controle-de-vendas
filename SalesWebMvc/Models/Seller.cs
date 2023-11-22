@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace SalesWebMvc.Models
+﻿namespace SalesWebMvc.Models
 {
     public class Seller
     {
