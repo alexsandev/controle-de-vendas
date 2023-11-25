@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SalesWebMvc.Models;
+using SalesWebMvc.Models.ViewModels;
 using SalesWebMvc.Services;
 
 namespace SalesWebMvc.Controllers
@@ -7,29 +8,35 @@ namespace SalesWebMvc.Controllers
     public class SellersController : Controller
     {
 
-        private SellerService _service;
+        private SellerService _sellerService;
+        private DepartmentService _departmentService;
 
-        public SellersController(SellerService service)
+        public SellersController(SellerService sellerService, DepartmentService departmentService)
         {
-            _service = service;
+            _sellerService = sellerService;
+            _departmentService = departmentService;
         }
 
         public IActionResult Index()
         {
-            var list = _service.FindAll();
+            var list = _sellerService.FindAll();
             return View(list);
         }
 
         public IActionResult Create()
         {
-            return View();
+            var viewModel = new SellerFormViewModel 
+            { 
+                Departments = _departmentService.FindAll().OrderBy(x => x.Name).ToList() 
+            };
+            return View(viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(Seller seller)
         {
-            _service.Insert(seller);
+            _sellerService.Insert(seller);
             return RedirectToAction("Index");
         }
     }
