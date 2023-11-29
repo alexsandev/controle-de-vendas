@@ -1,10 +1,8 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.DotNet.Scaffolding.Shared.Messaging;
 using SalesWebMvc.Models;
 using SalesWebMvc.Models.ViewModels;
 using SalesWebMvc.Services;
-using SalesWebMvc.Services.Exceptions;
 
 namespace SalesWebMvc.Controllers
 {
@@ -39,6 +37,12 @@ namespace SalesWebMvc.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Seller seller)
         {
+            /*
+            if(!ModelState.IsValid)
+            {
+                var viewModel = new SellerFormViewModel { Departments = _departmentService.FindAll(), Seller = seller };
+                return View(viewModel);
+            }*/
             _sellerService.Insert(seller);
             return RedirectToAction("Index");
         }
@@ -106,8 +110,15 @@ namespace SalesWebMvc.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, Seller seller)
+        public IActionResult Edit(int? id, Seller seller)
         {
+            /*
+            if(!ModelState.IsValid)
+            {   
+                var departments = _departmentService.FindAll();
+                var viewModel = new SellerFormViewModel { Departments = departments, Seller = seller };
+                return View(viewModel);
+            }*/
             if(id != seller.Id)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id mismatch"});
@@ -115,7 +126,7 @@ namespace SalesWebMvc.Controllers
             try
             {
                 _sellerService.Update(seller);
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
             catch (ApplicationException e)
             {
