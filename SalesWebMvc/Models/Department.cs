@@ -21,7 +21,7 @@
             sellers.Add(seller);
         }
 
-        public double totalSales(DateTime initial, DateTime final)
+        public double TotalSales(DateTime initial, DateTime final)
         {
             return sellers.Sum(s => s.TotalSales(initial, final));
         }
