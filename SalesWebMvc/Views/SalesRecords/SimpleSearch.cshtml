@@ -8,18 +8,18 @@
 
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
-        <form class="navbar-form navbar-left" role="search">
+        <form class="navbar-form navbar-left" style="display:flex; flex-direction:row; column-gap: 30px; " role="search">
             <div class="form-group">
-                <div class="form-group">
-                    <label for="minDate">Min Date</label>
-                    <input type="date" class="form-control" name="minDate" value=@ViewData["minDate"] />
-                </div>
-                <div class="form-group">
-                    <label for="maxDate">Max Date</label>
-                    <input type="date" class="form-control" name="maxDate" value=@ViewData["maxDate"] />
-                </div>
+                <label for="minDate">Min Date</label>
+                <input type="date" class="form-control" name="minDate" value=@ViewData["minDate"] />
             </div>
-            <button type="submit" class="btn btn-primary">Filter</button>
+            <div class="form-group">
+                <label for="maxDate">Max Date</label>
+                <input type="date" class="form-control" name="maxDate" value=@ViewData["maxDate"] />
+            </div>
+            <div style="display: flex; flex-direction: column; justify-content: end;">
+                <button type="submit" class="btn btn-primary">Filter</button>
+            </div>
         </form>
     </div>
 </nav>
