@@ -11,16 +11,15 @@ namespace SalesWebMvc.Data
     public class SalesWebMvcContext : DbContext
     {
         protected readonly IConfiguration Configuration;
-        public SalesWebMvcContext (DbContextOptions<SalesWebMvcContext> options, IConfiguration configuration)
-            : base(options)
+        public SalesWebMvcContext (DbContextOptions<SalesWebMvcContext> options, IConfiguration configuration) : base(options)
         {
             Configuration = configuration;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var connectionString = Configuration.GetConnectionString("SalesWebMvcContext");
-            optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+            var connectionString = Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING");
+            optionsBuilder.UseSqlServer(connectionString);
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
