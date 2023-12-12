@@ -1,14 +1,17 @@
 @model SalesWebMvc.Models.Seller
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalhes do vendedor";
+
+    string department = "";
+    if(Model.Department != null){
+        department = Model.Department.Name;
+    }
 }
 
 <h2>@ViewData["Title"]</h2>
 <hr>
-<br>
 <div>
-    <h4>Seller</h4>
     <dl>
         <dt>@Html.DisplayNameFor(model => model.Name)</dt>
         <dd>@Html.DisplayFor(model => model.Name)</dd>
@@ -19,12 +22,12 @@
         <dt>@Html.DisplayNameFor(model => model.BaseSalary)</dt>
         <dd>@Html.DisplayFor(model => model.BaseSalary)</dd>
         <dt>@Html.DisplayNameFor(model => model.Department)</dt>
-        <dd>@Html.DisplayFor(model => model.Department.Name)</dd>
+        <dd>@department</dd>
     </dl>
 </div>
 <hr>
 <br>
-<div style="display: flex; column-gap: 30px; align-items: center;">
-    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
-    <a asp-action="Index">Back to list</a>
+<div class="form-group">
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Editar</a> |
+    <a asp-action="Index">Voltar para lista</a>
 </div>

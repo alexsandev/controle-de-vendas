@@ -6,28 +6,29 @@ namespace SalesWebMvc.Models
     {
         public int? Id { get; set; }
 
-        [Required(ErrorMessage = "{0} required")]
-        [StringLength(60, MinimumLength = 3, ErrorMessage = "{0} size should be between {2} and {1}")]
+        [Display(Name = "Nome")]
+        [Required(ErrorMessage = "O campo {0} é obrigatório.")]
+        [StringLength(60, MinimumLength = 3, ErrorMessage = "O campo {0} deve conter entre {2} e {1} caracteres.")]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "{0} required")]
-        [EmailAddress(ErrorMessage = "Enter a valid email")]
+        [Required(ErrorMessage = "O campo {0} é obrigatório.")]
+        [EmailAddress(ErrorMessage = "Entre com um e-mail válido.")]
         public  string Email { get; set; }
         
-        [Required(ErrorMessage = "{0} required")]        
-        [Display(Name = "Birth Date")]
+        [Required(ErrorMessage = "O campo {0} é obrigatório.")]        
+        [Display(Name = "Data de nascimento")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime BirthDate { get; set; }
         
-        [Required(ErrorMessage = "{0} required")]
-        [Range(100.00, 50000.00, ErrorMessage = "{0} must be from {1} to {2}")]
-
-        [Display(Name = "Base Salary")]
+        [Required(ErrorMessage = "O campo {0} é obrigatório.")]
+        [Range(100.00, 50000.00, ErrorMessage = "O {0} deve ser entre {1} e {2}.")]
+        [Display(Name = "Salário")]
         [DisplayFormat(DataFormatString = "{0:F2}")]
         public double BaseSalary { get; set; }
 
-        public Department Department { get; set; }
+        [Display(Name = "Departamento")]
+        public Department? Department { get; set; }
         public int DepartmentId { get; set; }
         public ICollection<SalesRecord> Sales { get; set; } = new List<SalesRecord>();
 

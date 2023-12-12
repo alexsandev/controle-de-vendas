@@ -1,6 +1,6 @@
 ﻿@model SalesWebMvc.Models.ViewModels.SellerFormViewModel
 @{
-    ViewData["Title"] = "Sellers";
+    ViewData["Title"] = "Novo vendedor";
 }
 
 <h2>@ViewData["Title"]</h2>
@@ -34,7 +34,8 @@
             </div>
             <br />
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Criar" class="btn btn-primary" /> | 
+                <a asp-action="Index">Voltar para lista</a>
             </div>
         </form>
     </div>

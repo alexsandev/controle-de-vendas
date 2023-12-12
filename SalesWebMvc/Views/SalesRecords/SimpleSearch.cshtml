@@ -1,7 +1,7 @@
 @model IEnumerable<SalesWebMvc.Models.SalesRecord>
 
 @{
-    ViewData["Title"] = "Simple Search";
+    ViewData["Title"] = "Busca simples";
 }
 
 <h2>@ViewData["Title"]</h2>
@@ -10,22 +10,22 @@
     <div class="container-fluid">
         <form class="navbar-form navbar-left" style="display:flex; flex-direction:row; column-gap: 30px; " role="search">
             <div class="form-group">
-                <label for="minDate">Min Date</label>
+                <label for="minDate">Data inicial</label>
                 <input type="date" class="form-control" name="minDate" value=@ViewData["minDate"] />
             </div>
             <div class="form-group">
-                <label for="maxDate">Max Date</label>
+                <label for="maxDate">Data final</label>
                 <input type="date" class="form-control" name="maxDate" value=@ViewData["maxDate"] />
             </div>
             <div style="display: flex; flex-direction: column; justify-content: end;">
-                <button type="submit" class="btn btn-primary">Filter</button>
+                <button type="submit" class="btn btn-primary">Filtrar</button>
             </div>
         </form>
     </div>
 </nav>
 <div class="panel panel-primary">
     <div class="panel-heading">
-        <h3 class="panel-title">Total sales = @Model.Sum(obj => obj.Amount).ToString("F2")</h3>
+        <h3 class="panel-title">Total de vendas = @Model.Sum(obj => obj.Amount).ToString("F2")</h3>
     </div>
     <div class="panel-body">
     <table class="table table-hover">
