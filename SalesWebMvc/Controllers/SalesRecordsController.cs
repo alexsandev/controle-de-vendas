@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SalesWebMvc.Services;
 
@@ -12,10 +13,13 @@ namespace SalesWebMvc.Controllers
             _salesRecordService = salesRecordService;
         }
 
+        [Authorize]
         public IActionResult Index()
         {
             return View();
         }
+
+        [Authorize]
         public async Task<IActionResult> SimpleSearch(DateTime? minDate, DateTime? maxDate)
         {
             if(!minDate.HasValue) minDate = new DateTime(DateTime.Now.Year, 1, 1);
@@ -28,6 +32,7 @@ namespace SalesWebMvc.Controllers
             return View(list);
         }
 
+        [Authorize]
         public async Task<IActionResult> GroupingSearch(DateTime? minDate, DateTime? maxDate)
         {
             if (!minDate.HasValue) minDate = new DateTime(DateTime.Now.Year, 1, 1);

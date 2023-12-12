@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,7 @@ namespace SalesWebMvc.Controllers
             _context = context;
         }
 
+        [Authorize]
         // GET: Departments
         public async Task<IActionResult> Index()
         {
@@ -27,6 +29,7 @@ namespace SalesWebMvc.Controllers
                           Problem("Entity set 'SalesWebMvcContext.Department'  is null.");
         }
 
+        [Authorize]
         // GET: Departments/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -45,6 +48,7 @@ namespace SalesWebMvc.Controllers
             return View(department);
         }
 
+        [Authorize]
         // GET: Departments/Create
         public IActionResult Create()
         {
@@ -53,9 +57,10 @@ namespace SalesWebMvc.Controllers
 
         // POST: Departments/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598. 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("Id,Name")] Department department)
         {
             if (ModelState.IsValid)
@@ -67,6 +72,7 @@ namespace SalesWebMvc.Controllers
             return View(department);
         }
 
+        [Authorize]
         // GET: Departments/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -88,6 +94,7 @@ namespace SalesWebMvc.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Department department)
         {
             if (id != department.Id)
@@ -119,6 +126,7 @@ namespace SalesWebMvc.Controllers
         }
 
         // GET: Departments/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Department == null)
@@ -139,6 +147,7 @@ namespace SalesWebMvc.Controllers
         // POST: Departments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Department == null)

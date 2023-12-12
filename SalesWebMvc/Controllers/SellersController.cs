@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SalesWebMvc.Models;
 using SalesWebMvc.Models.ViewModels;
@@ -18,12 +19,14 @@ namespace SalesWebMvc.Controllers
             _departmentService = departmentService;
         }
 
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var list = await _sellerService.FindAllAsync();
             return View(list);
         }
 
+        [Authorize]
         public async Task <IActionResult> Create()
         {
             var departments = await _departmentService.FindAllAsync();
@@ -36,6 +39,7 @@ namespace SalesWebMvc.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create(Seller seller)
         {
             if(!ModelState.IsValid)
@@ -48,6 +52,7 @@ namespace SalesWebMvc.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if(id == null)
@@ -67,6 +72,7 @@ namespace SalesWebMvc.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Delete(int id)
         {
             try
@@ -80,6 +86,7 @@ namespace SalesWebMvc.Controllers
             }
         }
 
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if(id == null) 
@@ -97,6 +104,7 @@ namespace SalesWebMvc.Controllers
             return View(obj);
         }
 
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if(id == null)
@@ -118,6 +126,7 @@ namespace SalesWebMvc.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int? id, Seller seller)
         {
             if(!ModelState.IsValid)

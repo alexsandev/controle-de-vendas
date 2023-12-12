@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - SalesWebMvc</title>
+    <title>@ViewData["Title"]</title>
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/2660/2660366.png">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-lux.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/SalesWebMvc.styles.css" asp-append-version="true" />
@@ -20,21 +21,21 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Início</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Sellers" asp-action="Index">Sellers</a>
+                            <a class="nav-link" asp-area="" asp-controller="Sellers" asp-action="Index">Vendedores</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="SalesRecords" asp-action="Index">Sales Records</a>
+                            <a class="nav-link" asp-area="" asp-controller="SalesRecords" asp-action="Index">Vendas</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Departments" asp-action="Index">Departments</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                            <a class="nav-link" asp-area="" asp-controller="Departments" asp-action="Index">Departamentos</a>
+                        </li>               
                     </ul>
+                </div>
+                <div>
+                    <partial name="_LoginPartial"/>
                 </div>
             </div>
         </nav>

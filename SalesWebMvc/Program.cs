@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using SalesWebMvc.Data;
 using SalesWebMvc.Services;
@@ -11,11 +12,14 @@ namespace SalesWebMvc
         {
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddDbContext<SalesWebMvcContext>();
+            builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<SalesWebMvcContext>().AddDefaultTokenProviders();
+            builder.Services.AddAuthorization();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddScoped<SeedingService>();
+            builder.Services.AddScoped<AccountService>();
             builder.Services.AddScoped<SellerService>();
             builder.Services.AddScoped<DepartmentService>();
             builder.Services.AddScoped<SalesRecordService>();
@@ -44,12 +48,10 @@ namespace SalesWebMvc
             };
 
             app.UseRequestLocalization(localizationOption);
-
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
