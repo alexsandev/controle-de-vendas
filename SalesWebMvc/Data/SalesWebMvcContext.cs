@@ -15,11 +15,11 @@ namespace SalesWebMvc.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //var connectionString = Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING");
-            //optionsBuilder.UseSqlServer(connectionString);
+            var connectionString = Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING");
+            optionsBuilder.UseSqlServer(connectionString);
             
-            var connectionString = Configuration.GetConnectionString("MYSQL_CONNECTIONSTRING");
-            optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+            //var connectionString = Configuration.GetConnectionString("MYSQL_CONNECTIONSTRING");
+            //optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
         }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
