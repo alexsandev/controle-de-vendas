@@ -17,10 +17,11 @@ namespace SalesWebMvc.Data
         {
             //var connectionString = Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING");
             //optionsBuilder.UseSqlServer(connectionString);
-
+            
             var connectionString = Configuration.GetConnectionString("MYSQL_CONNECTIONSTRING");
             optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
         }
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
